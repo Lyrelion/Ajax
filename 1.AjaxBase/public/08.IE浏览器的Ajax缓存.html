@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">发送Ajax请求</button>
+    <script type="text/javascript">
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            // IE浏览器会从 缓存 中拿取 同一个请求地址的 服务器返回结果
+            // 服务器端已经更新，IE浏览器依旧从缓存中拿取结果
+            // 解决方案：配置 ajax请求地址的时候，加上随机数，改变请求地址
+            xhr.open('get', 'http://localhost:3000/cache?t=' + Math.random());
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

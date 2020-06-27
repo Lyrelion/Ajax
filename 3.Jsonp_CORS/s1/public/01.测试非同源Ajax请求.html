@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>测试非同源</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="/js/ajax.js"></script>
+    <script type="text/javascript">
+        // ajax 无法像非同源服务器发送请求
+        // 本服务器的端口号是 3000，这个ajax向 3001端口服务器发送请求
+        ajax({
+            url: 'http://localhost:3001/test',
+            type: 'get',
+            success: function(result) {
+                console.log(result);
+            }
+        })
+    </script>
+</body>
+
+</html>
